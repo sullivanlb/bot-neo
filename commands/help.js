@@ -1,4 +1,3 @@
-const { DiscordAPIError } = require("discord.js");
 const Discord = require('discord.js');
 
 module.exports = (client, message) => {
@@ -8,7 +7,8 @@ module.exports = (client, message) => {
         .setDescription("Mon préfix est `.`")
         //.setThumbnail("https://imgur.com/a/iPN4UtZ")
         .addField("Commandes", "- `afk` : affiche [AFK] à gauche de ton pseudo\r\n" + 
-                                "- `tg` <mention> : Je vais faire taire la personne que tu mentionnes")
+                                "- `tg` <mention> : Je vais faire taire la personne que tu mentionnes\r\n" + 
+                                "- `rand` <min> <max> : Je vais te retourner un nombre entre [ min ; max ]")
         .setTimestamp()
         .setFooter("By Scipio");
                 
