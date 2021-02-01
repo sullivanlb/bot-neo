@@ -7,7 +7,8 @@ module.exports = (client, message) => {
         .setTitle("Menu d'aide de Neo")
         .setDescription("Mon préfix est `.`")
         //.setThumbnail("https://imgur.com/a/iPN4UtZ")
-        .addField("Commandes", " - `afk` : affiche [AFK] à gauche de ton pseudo\r\n- `tg` <mention> : Je vais faire taire la personne que tu mentionnes")
+        .addField("Commandes", "- `afk` : affiche [AFK] à gauche de ton pseudo\r\n" + 
+                                "- `tg` <mention> : Je vais faire taire la personne que tu mentionnes")
         .setTimestamp()
         .setFooter("By Scipio");
                 

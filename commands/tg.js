@@ -4,7 +4,7 @@ module.exports = (client, message, args) => {
     let test = false;
     const str = ["Scipio", "Sullivan", "@Scipio", "Scip", "Sulli", "Sull", "<@!329338532042768387>", "Scipioo"];
     for (let i = 0; i < str.length; i++){
-        if (str[i] == args) test = true;
+        if (str[i].toUpperCase() == args.toUpperCase()) test = true;
     }
 
     if (!(args == "")){
