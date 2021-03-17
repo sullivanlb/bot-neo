@@ -1,5 +1,5 @@
 # botNeo
-This discord bot called Neo will soon get other features, at the moment he have these :
+This discord bot called Neo, at the moment he have these features :
 
 Prefix bot is "."
 
