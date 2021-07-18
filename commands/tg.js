@@ -1,10 +1,14 @@
 module.exports = (client, message, args) => {
     message.delete()
 
+    for (let i = 0; i < args.length; i++){
+        args[i].toUpperCase();
+    }
+
     let test = false;
     const str = ["Scipio", "Sullivan", "@Scipio", "Scip", "Sulli", "Sull", "<@!329338532042768387>", "Scipioo"];
     for (let i = 0; i < str.length; i++){
-        if (str[i].toUpperCase() == args.toUpperCase()) test = true;
+        if (str[i].toUpperCase() == args) test = true;
     }
 
     if (!(args == "")){
