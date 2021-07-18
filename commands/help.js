@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 
+console.log("help called")
+
 module.exports = (client, message) => {
     const messageEmbed = new Discord.MessageEmbed()
         .setColor("#b82bff")
