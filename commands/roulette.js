@@ -35,49 +35,59 @@ module.exports = async (client, message, args) => {
             }
 
             if (args[0].toUpperCase() == "KICK") {
-
-                // console.log(message.guild.members.cache);
-
                 for (let key of message.guild.members.cache.keys()) {
                     console.log(message.guild.members.cache.get(key).user);
                 }
-
-                // let user = client.users.find(user => user.username == "Josetzn");
-                // user.kick();
             }
 
             if (args[0].toUpperCase() == "START") {
                 if(roulette.username.length < 1){
                     message.channel.send("Il n'y a pas assez de participants pour commencer.");
                 }else{
-                    for (let i = 0; i < roulette.username.length; i++) {
-                        let rand = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
+                    let i = 0;
+                    let isOnekilled = false;
+                    let indexKilled = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
 
-                        if (i == 0) message.channel.send("Commençons par " + roulette.username[rand] + ", n'est pas peur tout va bien se passer.");
-                        else message.channel.send("Au tour de " + roulette.username[rand] + ".");
+                    // while no one is killed and everyone haven't pass his turn
+                    while (!isOnekilled && i < roulette.username.length) {
+                        let choosenPlayer = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
+
+
+                        if (i == 0) message.channel.send("Commençons par " + roulette.username[choosenPlayer] + ", n'est pas peur tout va bien se passer.");
+                        else message.channel.send("Au tour de " + roulette.username[choosenPlayer] + ".");
                         await new Promise(r => setTimeout(r, 1000));
                         message.channel.send("3");
                         await new Promise(r => setTimeout(r, 1000));
                         message.channel.send("2");
-                        await new Promise(r => setTimeout(r, 2000));
+                        await new Promise(r => setTimeout(r, 1000));
                         message.channel.send("1");
 
-                        let rand2 = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
-                        if (roulette.username[rand2] == roulette.username[rand]) {
+                        if (roulette.username[indexKilled] == roulette.username[choosenPlayer]) {
                             
                             for (let key of message.guild.members.cache.keys()) {
-                                if(message.guild.members.cache.get(key).user.username == roulette.username[rand]){
-                                    guild.members.kick(message.guild.members.cache.get(key).user.id)
+                                if(message.guild.members.cache.get(key).user.username == roulette.username[choosenPlayer]){
+                                    message.guild.member(message.guild.members.cache.get(key).user.id).kick()
                                         .then(banInfo => console.log(`Faute à pas de chance`))
                                         .catch(console.error);
+                                    
+                                        isOnekilled = true;
+                                        console.log("someone have benn kicked")
                                 }
                             }
 
                             message.channel.send("AHAHAHAHAHA");
+                        }else{
+                            message.channel.send("Tir à blanc, dommage :) \r\n" + 
+                                                "---------------------------");
                         }
+
+                        // delete the choosen player of the queue
+                        roulette.username.pull(message.author.username);
+
+                        i++;
                     }
 
-                    // roulette.username = [];
+                    roulette.username = [];
                 }
             }
 
@@ -153,17 +163,4 @@ module.exports = async (client, message, args) => {
                 return;
             }
         });
-
-        // delete the useless docs
-        // if (nbDocs > 0){
-        //     for (let i = 0; i < lastDocID.length; i++) {
-        //         await Roulette.deleteOne({_id: lastDocID[i]._id}, function(err) {
-        //             if(err){
-        //                 console.log(err);
-        //             }
-
-        //             console.log("deleted");
-        //         });
-        //     }
-        // }
 }
