@@ -34,15 +34,47 @@ module.exports = async (client, message, args) => {
                 })
             }
 
+            if (args[0].toUpperCase() == "KICK") {
+
+                // console.log(message.guild.members.cache);
+
+                for (let key of message.guild.members.cache.keys()) {
+                    console.log(message.guild.members.cache.get(key).user);
+                }
+
+                // let user = client.users.find(user => user.username == "Josetzn");
+                // user.kick();
+            }
+
             if (args[0].toUpperCase() == "START") {
                 if(roulette.username.length < 1){
                     message.channel.send("Il n'y a pas assez de participants pour commencer.");
                 }else{
                     for (let i = 0; i < roulette.username.length; i++) {
-                        let rand = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)))
-                        console.log(rand);
+                        let rand = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
 
-                        // if (i == 0) message.channel.send("Commençons par " + roulette);
+                        if (i == 0) message.channel.send("Commençons par " + roulette.username[rand] + ", n'est pas peur tout va bien se passer.");
+                        else message.channel.send("Au tour de " + roulette.username[rand] + ".");
+                        await new Promise(r => setTimeout(r, 1000));
+                        message.channel.send("3");
+                        await new Promise(r => setTimeout(r, 1000));
+                        message.channel.send("2");
+                        await new Promise(r => setTimeout(r, 2000));
+                        message.channel.send("1");
+
+                        let rand2 = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)));
+                        if (roulette.username[rand2] == roulette.username[rand]) {
+                            
+                            for (let key of message.guild.members.cache.keys()) {
+                                if(message.guild.members.cache.get(key).user.username == roulette.username[rand]){
+                                    guild.members.kick(message.guild.members.cache.get(key).user.id)
+                                        .then(banInfo => console.log(`Faute à pas de chance`))
+                                        .catch(console.error);
+                                }
+                            }
+
+                            message.channel.send("AHAHAHAHAHA");
+                        }
                     }
 
                     // roulette.username = [];
