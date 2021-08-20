@@ -34,6 +34,21 @@ module.exports = async (client, message, args) => {
                 })
             }
 
+            if (args[0].toUpperCase() == "START") {
+                if(roulette.username.length < 1){
+                    message.channel.send("Il n'y a pas assez de participants pour commencer.");
+                }else{
+                    for (let i = 0; i < roulette.username.length; i++) {
+                        let rand = Math.floor(Math.random() * ((parseInt(roulette.username.length - 1) + 1)))
+                        console.log(rand);
+
+                        // if (i == 0) message.channel.send("Commençons par " + roulette);
+                    }
+
+                    // roulette.username = [];
+                }
+            }
+
             if (args[0].toUpperCase() == "JOIN") {
                 let exist = false;
                 for (let i = 0; i < roulette.username.length; i++) {
