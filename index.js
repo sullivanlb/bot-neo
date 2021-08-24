@@ -3,7 +3,6 @@ const { Collection } = require("discord.js");
 const client = new Discord.Client();
 require("dotenv").config();
 const express = require('express');
-const { wakeDyno } = require('heroku-keep-awake');
 const app = express();
 
 client.PREFIX = process.env.PREFIX;
@@ -11,13 +10,12 @@ client.PREFIX = process.env.PREFIX;
 const PORT = process.env.PORT || 3000;
 const BOT_URL = 'https://bot-neo.herokuapp.com/';
 app.listen(PORT, () => {
-    wakeDyno(BOT_URL);
 
     console.log(`App is running on port ${ PORT }`);
 });
 
 client.commands = new Collection();
-client.commands.set("afk", require("./commands/afk.js"));
+client.commands.set("status", require("./commands/status.js"));
 client.commands.set("tg", require("./commands/tg.js"));
 client.commands.set("help", require("./commands/help.js"));
 client.commands.set("rand", require("./commands/rand.js"));
