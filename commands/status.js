@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = (client, message, args) => {
     let argsInCap = args;
     for (let i = 0; i < args.length; i++){
@@ -8,6 +10,7 @@ module.exports = (client, message, args) => {
         message.channel.send("Tout nom est chelou, change moi ça !")
     }else{
         if (!(args == "")){
+            console.log(argsInCap)
             if (argsInCap == "CLEAR"){
                 const regex = new RegExp("^\\[\\S*\\]\\s"); // match everything between []
                 message.member.setNickname(message.member.displayName.replace(regex, ''));
