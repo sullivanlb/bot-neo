@@ -20,6 +20,7 @@ client.commands.set("tg", require("./commands/tg.js"));
 client.commands.set("help", require("./commands/help.js"));
 client.commands.set("rand", require("./commands/rand.js"));
 client.commands.set("roulette", require("./commands/roulette.js"));
+client.commands.set("spam", require("./commands/spam.js"));
 
 client.on("ready", () => require("./events/ready.js")(client));
 client.on("message", (message) => require("./events/message.js")(client, message));
